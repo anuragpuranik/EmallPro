@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<h1 class="head">User Details</h1>
+<form method="post">
+{% csrf_token %}
+<pre>
+    User ID   : {{ mydata.userid }}
+    User type : {{ mydata.usertype }}
+                <input class="btn btn-danger" type="submit" value="Delete">
+</pre>
+</form>
+{% endblock body %}
+    

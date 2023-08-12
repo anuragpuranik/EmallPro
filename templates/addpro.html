@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1 class="head">Product Submission Form</h1><hr>
+    <form method="post">
+        {% csrf_token %}
+        <table>{{ myform }}</table>
+        <input class="btn-lg btn-primary" type="submit" value="Save">
+    </form>
+
+{% endblock body %}
+    

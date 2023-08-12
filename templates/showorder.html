@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load mathfilters %}
+
+
+{% block body %}
+<h1 class="head">Order Details</h1>
+<form method="post">
+    {% csrf_token %}
+
+<table class="table table-bordered table-hover">
+    <thead style="text-align: center;">
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Discount(%)</th>
+        <th>Total Price</th>
+    </thead>
+    <tbody>
+        {% for dt in mydata  %}
+        <tr>
+        <td>{{ dt.proid.pname }}</td>
+        <td>{{ dt.proid.pdesc }}</td>
+        <td>{{ dt.proid.price }}</td>
+        <td>{{ dt.proid.discount }}</td>
+        <td>{{ dt.proid.price|mul:dt.proid.discount|div:100|sub:dt.proid.price|abs }}</td>
+            
+    </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr style="text-align: center;">
+        <th colspan="4">Total Price of Cart : </th>
+        <td>{{ netprice }}</td>
+       </tr>
+       <tr>
+        <td colspan="5" align="right"><input type="submit" class="btn-lg btn-info" value="Make Payment"></td>
+       </tr>
+    </tfoot>
+</table>
+</form>
+{% endblock body %}
+    

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<form method="post">
+    <h1 class="head">User Profile Form</h1><hr>
+    {% csrf_token %}
+                    <table>{{ myform }}</table>
+    <pre>  
+            <input class="btn-lg btn-success" type="submit" value="Save">
+    </pre>
+</form>    
+
+
+{% endblock body %}
+    

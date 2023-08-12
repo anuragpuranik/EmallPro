@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<h1 class="head">Product List</h1>
+<table class="table table-bordered table-hover">
+    <thead>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Discount(%)</th>
+        <th>Update</th>
+        <th>Remove</th>
+    </thead>
+    <tbody>
+      
+        {% for dt in mydata  %}
+        <tr>
+        <td>{{ dt.pname }}</td>
+        <td>{{ dt.pdesc }}</td>
+        <td>{{ dt.price }}</td>
+        <td>{{ dt.discount }}</td>
+        <td><a href="{% url 'updpro' id=dt.pid %}"><button class="btn btn-warning">Update</button></a></td>    
+        <td><a href="{% url 'delpro' id=dt.pid %}"><button class="btn btn-danger">Delete</button></a></td>    
+    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
+    

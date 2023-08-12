@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1 class="head">Product Removal Form</h1><hr>
+    <form method="post">
+        {% csrf_token %}
+        <h3>Do u want to delete the Product : {{ pname }}</h3>
+        <input class="btn-lg btn-danger" type="submit" value="Delete">
+    </form>
+    
+{% endblock body %}
+    

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<h1 class="head">Product List</h1>
+<table class="table table-bordered table-hover">
+    <thead>
+        <th>Complaint ID</th>
+        <th>Description</th>
+        <th>Comp Date</th>
+        <th>Status</th>
+        <th>User</th>
+        <th>Response</th>
+    </thead>
+    <tbody>
+      
+        {% for dt in mydata  %}
+        <tr>
+        <td><a href="{% url 'response' id=dt.compid %}">{{ dt.compid }}</a></td>
+        <td>{{ dt.compdesc }}</td>
+        <td>{{ dt.compdt }}</td>
+        <td>{{ dt.status }}</td>
+        <td>{{ dt.userid.userid }}</td>
+        <td>{{ dt.response }}</td>
+        
+        
+    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
+    

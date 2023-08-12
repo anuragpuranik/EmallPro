@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<h1 class="head">Application User List</h1>
+<table class="table table-bordered table-hover">
+    <thead>
+        <th>User ID</th>
+        <th>User Type</th>
+        <th>Remove</th>
+    </thead>
+    <tbody>
+      
+        {% for dt in mydata  %}
+        <tr>
+        <td>{{ dt.userid }}</td>
+        <td>{{ dt.usertype }}</td>
+        <td><a href="{% url 'userdetails' id=dt.userid %}"><button class="btn btn-danger">Delete</button></a></td>    
+    </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock body %}
+    

@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+
+{% block body %}
+<script>
+    var request;
+    function getPro(id){
+        request=new XMLHttpRequest();
+        url="prolist?id="+id;
+        request.onreadystatechange=output;
+        request.open("GET",url);
+        request.send();
+    }
+    function output(){
+        if(request.readyState==4 && request.status==200){
+            var result=JSON.parse(request.responseText);
+            tbody=document.getElementById("tbody");
+            tbody.innerText=""
+            for(res of result){
+                tr=document.createElement("tr");
+
+                td1=document.createElement("td");
+                td1.innerText=res.pname;
+                tr.appendChild(td1);
+
+                td2=document.createElement("td");
+                td2.innerText=res.pdesc;
+                tr.appendChild(td2);
+
+                td3=document.createElement("td");
+                td3.innerText=res.price;
+                tr.appendChild(td3);
+
+                td4=document.createElement("td");
+                td4.innerText=res.discount;
+                tr.appendChild(td4);
+
+                td5=document.createElement("td");
+                var net=res.price-((res.price*res.discount)/100)
+                td5.innerText=net;
+                tr.appendChild(td5);
+
+                td6=document.createElement("td");
+                btn=document.createElement("button");
+                btn.innerText="Add";
+                btn.setAttribute("type","submit");
+                btn.setAttribute("class","btn-info");
+                btn.setAttribute("name","proid");
+                btn.setAttribute("value",res.pid);
+
+                td6.appendChild(btn);
+                tr.appendChild(td6);
+                tbody.appendChild(tr);
+            }
+
+            
+
+            
+        }
+    }
+
+</script>
+
+
+
+<h1 class="head">Select Your Desired Product</h1>
+  <form method="post">
+    {% csrf_token %}
+        <h3>Select the Product Category : </h3><select name="pcat" class="form-select form-select-lg" onchange="getPro(this.value)">
+            {% for dt  in mydata %}
+            <option value="{{ dt.pcid }}">{{ dt.pcname }}</option>    
+            {% endfor %}
+        </select>
+        <table  class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Discount(%)</th>
+                    <th>Net Price</th>
+                    <th>Add to Cart</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+
+  </form>  
+{% endblock body %}
+    

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <h1 class="head">Emall Application Login Form</h1><hr>
+    <form method="post">
+        {% csrf_token %}
+        <pre>
+        UserID   : <input type="text" name="uid">
+        Password : <input type="password" name="pwd">
+                   <input type="submit" value="Login Now">
+                </pre>
+    </form>
+<a href="{% url 'adduser' %}">New User Register Here</a>
+{% endblock body %}
+    
